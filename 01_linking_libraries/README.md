@@ -7,65 +7,24 @@ At this point you should be familliar with following stages:
 Due to fact that this guide focuses on `bazel` there won't be additional information about how to create  
 object file, library and compile source code. It is also assumed that you have basic knowledge of `Linux CLI`.  
 
-
-### Steps 
+#### Steps 
 
 ```bash 
     mkdir -p /home/adrianjuszczak/Sandbox/gitHub/bazel/01_linking_libraries
     cd /home/adrianjuszczak/Sandbox/gitHub/bazel/01_linking_libraries
     touch WORKSPACE
+    mkdir project && cd project
+    touch BUILD main.cpp
     mkdir src lib
     cd src 
     touch BUILD IHuman.h Developer.k Developer.cpp
 ```
 
-Content of IHuman.h  
-```c++
-#ifndef IHUMAN_H
-#define IHUMAN_H
 
-namespace anjk
-{
-    class IHuman
-    {
-    public:
-        IHuman() = default;
-        virtual ~IHuman() = default;
+#### Static library creation
+Required for static library creation, will be removed afterwards
 
-        virtual void printFunction() = 0;
-    };
-}
-#endif
-```
-
-Content of Developer.h
-```c++
-#ifndef DEVELOPER_H
-#define DEVELOPER_H
-
-#include <string>
-
-#include "IHuman.h"
-
-namespace anjk
-{
-    class Developer : public IHuman
-    {
-    public:
-        Developer(std::string name);
-        ~Developer();
-
-        void printFunction() override;
-    private:
-        std::string m_name {};
-
-    };
-}
-
-#endif
-```
-
-Content of Developer.cpp (required for static library creation, will be removed afterwards)
+Content of Developer.cpp file 
 ```c++
 #include <iostream>
 
